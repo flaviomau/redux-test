@@ -2,8 +2,8 @@ const redux = require('redux')
 
 function counterReducer(state = 0, action){
     switch(action.type){
-        case 'INCREMENT': return state + 1
-        case 'DECREMENT': return state - 1
+        case 'INCREMENT': return state + action.value
+        case 'DECREMENT': return state - action.value
     }
     return state
 }
@@ -15,8 +15,8 @@ function storeChanged(){
 const store = redux.createStore(counterReducer)
 store.subscribe(storeChanged)
 
-const increment = { type: 'INCREMENT' }
-const decrement = { type: 'DECREMENT' }
+const increment = { type: 'INCREMENT', value: 3 }
+const decrement = { type: 'DECREMENT', value: 1 }
 
 store.dispatch(increment)
 store.dispatch(decrement)
